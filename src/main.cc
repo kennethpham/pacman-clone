@@ -37,9 +37,9 @@ int main(void) {
       *player.GetDir() = RIGHT;
     } else if (IsKeyDown(KEY_LEFT)) {
       *player.GetDir() = LEFT;
-    } else if (IsKeyDown(KEY_UP)) {
-      *player.GetDir() = UP;
     } else if (IsKeyDown(KEY_DOWN)) {
+      *player.GetDir() = UP;
+    } else if (IsKeyDown(KEY_UP)) {
       *player.GetDir() = DOWN;
     }
     //------------------------------------------------
