@@ -5,6 +5,8 @@
 
 #include <array>
 
+namespace pacman {
+
 class Map {
 public:
   Map(){};
@@ -14,5 +16,7 @@ public:
 private:
   std::array<std::array<Tile, 5>, 5> _map{};
 };
+
+} // namespace pacman
 
 #endif

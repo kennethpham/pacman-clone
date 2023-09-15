@@ -6,6 +6,8 @@
 
 #include "include/raylib.h"
 
+using namespace pacman;
+
 int main(void) {
   const int screenWidth = 500;
   const int screenHeight = 500;

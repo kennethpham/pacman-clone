@@ -2,6 +2,9 @@
 #define _PACMAN_PLAYER_H_
 
 #include "include/raylib.h"
+#include <deque>
+
+namespace pacman {
 
 enum STATUS {
   NORMAL = 0,
@@ -27,5 +30,7 @@ private:
   DIRECTION _dir{};
   Vector2 _pos{};
 };
+
+} // namespace pacman
 
 #endif
