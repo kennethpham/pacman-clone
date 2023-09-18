@@ -25,12 +25,24 @@ int main(void) {
 
     if (UP == *player.GetDir()) {
       player.GetPos()->y += 1.0f;
+      if (player.GetPos()->y > screenHeight) {
+        player.GetPos()->y = 0;
+      }
     } else if (DOWN == *player.GetDir()) {
       player.GetPos()->y -= 1.0f;
+      if (player.GetPos()->y < 0) {
+        player.GetPos()->y = screenHeight;
+      }
     } else if (LEFT == *player.GetDir()) {
       player.GetPos()->x -= 1.0f;
+      if (player.GetPos()->x < 0) {
+        player.GetPos()->x = screenWidth;
+      }
     } else if (RIGHT == *player.GetDir()) {
       player.GetPos()->x += 1.0f;
+      if (player.GetPos()->x > screenWidth) {
+        player.GetPos()->x = 0;
+      }
     }
 
     if (IsKeyDown(KEY_RIGHT)) {
