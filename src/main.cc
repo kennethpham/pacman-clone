@@ -42,7 +42,6 @@ int main(void) {
     } else if (IsKeyDown(KEY_UP)) {
       *player.GetDir() = DOWN;
     }
-    //------------------------------------------------
 
     BeginDrawing();
 
