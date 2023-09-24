@@ -8,6 +8,7 @@
 
 using namespace pacman;
 
+constexpr Vector2 tile_size = {100, 100};
 constexpr int screen_width = 500;
 constexpr int screen_height = 500;
 const char* window_title = "screen title";
@@ -22,6 +23,23 @@ int main(void) {
   Map map{};
 
   Player player(screen_width, screen_height);
+
+  Image player_img = LoadImage(player_image);
+  ImageResize(&player_img, 100, 100);
+  // Default faces right.
+  Texture2D player_r_texture = LoadTextureFromImage(player_img);
+  // Rotate clock-wise, facing down.
+  ImageRotateCW(&player_img);
+  Texture2D player_d_texture = LoadTextureFromImage(player_img);
+  // Rotate clock-wise, facing left.
+  ImageRotateCW(&player_img);
+  Texture2D player_l_texture = LoadTextureFromImage(player_img);
+  // Rotate clock-wise, facing up.
+  ImageRotateCW(&player_img);
+  Texture2D player_u_texture = LoadTextureFromImage(player_img);
+  UnloadImage(player_img);
+
+  Texture2D* player_texture = &player_r_texture;
 
   while (!WindowShouldClose()) {
 
@@ -49,19 +67,31 @@ int main(void) {
 
     if (IsKeyDown(KEY_RIGHT)) {
       *player.GetDir() = RIGHT;
+      player_texture = &player_r_texture;
     } else if (IsKeyDown(KEY_LEFT)) {
       *player.GetDir() = LEFT;
+      player_texture = &player_l_texture;
     } else if (IsKeyDown(KEY_DOWN)) {
       *player.GetDir() = UP;
+      player_texture = &player_d_texture;
     } else if (IsKeyDown(KEY_UP)) {
       *player.GetDir() = DOWN;
+      player_texture = &player_u_texture;
     }
 
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
 
-    DrawCircleV(*player.GetPos(), 10, DARKGRAY);
+    for (unsigned int i = 0; i < map.GetMap()->size(); ++i) {
+      for (unsigned int j = 0; j < map.GetMap()->at(i).size(); ++j) {
+        DrawRectangleV({(float)screen_width / map.GetMap()->size() * i,
+                        (float)screen_height / map.GetMap()->at(i).size() * j},
+                       tile_size, DARKBLUE);
+      }
+    }
+
+    DrawTextureV(*player_texture, *player.GetPos(), WHITE);
 
     EndDrawing();
   }

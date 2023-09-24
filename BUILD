@@ -1,6 +1,7 @@
 cc_binary(
   name = "pacman",
   srcs = ["src/main.cc"],
+  data = glob(["resources/**"]),
   deps = [
     "@raysan5_raylib//:raylib",
     ":map",
