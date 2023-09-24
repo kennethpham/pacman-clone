@@ -44,22 +44,22 @@ int main(void) {
   while (!WindowShouldClose()) {
 
     if (UP == *player.GetDir()) {
-      player.GetPos()->y += 1.0f;
+      player.GetPos()->y += 1.5f;
       if (player.GetPos()->y > screen_height) {
         player.GetPos()->y = 0;
       }
     } else if (DOWN == *player.GetDir()) {
-      player.GetPos()->y -= 1.0f;
+      player.GetPos()->y -= 1.5f;
       if (player.GetPos()->y < 0) {
         player.GetPos()->y = screen_height;
       }
     } else if (LEFT == *player.GetDir()) {
-      player.GetPos()->x -= 1.0f;
+      player.GetPos()->x -= 1.5f;
       if (player.GetPos()->x < 0) {
         player.GetPos()->x = screen_width;
       }
     } else if (RIGHT == *player.GetDir()) {
-      player.GetPos()->x += 1.0f;
+      player.GetPos()->x += 1.5f;
       if (player.GetPos()->x > screen_width) {
         player.GetPos()->x = 0;
       }
